@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard — TechSolutions CR</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Chart.js desde CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Menú Lateral Único -->
+        <aside class="sidebar">
+            <h2>TechSolutions CR</h2>
+            <nav>
+                <ul>
+                    <li><a href="dashboard.html" class="active">Dashboard</a></li>
+                    <li><a href="clientes.html">Clientes</a></li>
+                    <li><a href="productos.html">Productos</a></li>
+                    <li><a href="proveedores.html">Proveedores</a></li>
+                </ul>
+            </nav>
+            <button onclick="logout()" class="btn-logout">Cerrar Sesión</button>
+        </aside>
+
+        <!-- Área Principal -->
+        <main class="main-content">
+            <header class="header">
+                <h1>Panel General</h1>
+                
+                <!-- Esquina superior derecha: Información de usuario + Botón de Tema -->
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <div class="user-info">
+                        <span id="userName">Cargando...</span> | <span id="userRole"></span>
+                    </div>
+                    <button onclick="toggleTheme()" id="themeBtn" class="theme-switch-btn" style="margin: 0; padding: 8px 14px;">
+                        🌙 Modo Oscuro
+                    </button>
+                </div>
+            </header>
+
+            <!-- Tarjetas de Métricas -->
+            <section class="metrics-grid">
+                <div class="card">
+                    <h3>Clientes Registrados</h3>
+                    <p id="totalClientes">0</p>
+                </div>
+                <div class="card">
+                    <h3>Productos en Stock</h3>
+                    <p id="totalProductos">0</p>
+                </div>
+                <div class="card">
+                    <h3>Proveedores Activos</h3>
+                    <p id="totalProveedores">0</p>
+                </div>
+            </section>
+
+            <!-- Gráfico Estadístico de Flujo -->
+            <section class="chart-card">
+                <h3>Resumen de Flujo de Datos del Sistema</h3>
+                <div class="chart-container">
+                    <canvas id="flowChart"></canvas>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="javascript.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const session = checkSession();
+            if (session) {
+                document.getElementById('userName').innerText = session.nombre;
+                document.getElementById('userRole').innerText = session.role;
+                
+                const clientes = JSON.parse(localStorage.getItem('clientes')) || [];
+                const productos = JSON.parse(localStorage.getItem('productos')) || [];
+                const proveedores = JSON.parse(localStorage.getItem('proveedores')) || [];
+
+                document.getElementById('totalClientes').innerText = clientes.length;
+                document.getElementById('totalProductos').innerText = productos.length;
+                document.getElementById('totalProveedores').innerText = proveedores.length;
+
+                renderChart(clientes.length, productos.length, proveedores.length);
+            }
+        });
+    </script>
+</body>
+</html>
