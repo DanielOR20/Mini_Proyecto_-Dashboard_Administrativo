@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proveedores — TechSolutions CR</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Menú Lateral -->
+        <aside class="sidebar">
+            <h2>TechSolutions CR</h2>
+            <nav>
+                <ul>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="clientes.html">Clientes</a></li>
+                    <li><a href="productos.html">Productos</a></li>
+                    <li><a href="proveedores.html" class="active">Proveedores</a></li>
+                </ul>
+            </nav>
+            <button onclick="logout()" class="btn-logout">Cerrar Sesión</button>
+        </aside>
+
+        <!-- Área Principal -->
+        <main class="main-content">
+            <header class="header">
+                <h1>Administración de Proveedores</h1>
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <div class="user-info">
+                        <span id="userName">Cargando...</span> | <span id="userRole"></span>
+                    </div>
+                    <button onclick="toggleTheme()" id="themeBtn" class="theme-switch-btn" style="margin: 0; padding: 8px 14px;">
+                        🌙 Modo Oscuro
+                    </button>
+                </div>
+            </header>
+
+            <div class="crud-container">
+                <!-- Formulario -->
+                <div class="form-card">
+                    <h3 id="formTitleProv">Agregar Proveedor</h3>
+                    <form id="proveedorForm">
+                        <input type="hidden" id="proveedorId">
+                        
+                        <div class="form-group">
+                            <label>Nombre de la Empresa:</label>
+                            <input type="text" id="empresaProveedor" required placeholder="Ej: Distribuidora Tech CR">
+                        </div>
+                        <div class="form-group">
+                            <label>Persona de Contacto:</label>
+                            <input type="text" id="contactoProveedor" required placeholder="Ej: María López">
+                        </div>
+                        <div class="form-group">
+                            <label>Teléfono:</label>
+                            <input type="text" id="telefonoProveedor" required placeholder="2222-0000">
+                        </div>
+                        <div class="form-group">
+                            <label>Correo Electrónico:</label>
+                            <input type="email" id="correoProveedor" required placeholder="ventas@distribuidora.com">
+                        </div>
+
+                        <button type="submit" class="btn-primary" id="btnGuardarProv">Guardar Proveedor</button>
+                        <button type="button" class="btn-logout" id="btnCancelarProv" style="display:none; margin-top:8px;" onclick="resetProveedorForm()">Cancelar Edición</button>
+                    </form>
+                </div>
+
+                <!-- Tabla de Datos -->
+                <div class="table-card">
+                    <h3>Lista de Proveedores Activos</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Empresa</th>
+                                <th>Contacto</th>
+                                <th>Teléfono</th>
+                                <th>Correo</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablaProveedores">
+                            <!-- Se renderiza dinámicamente -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="javascript.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const session = checkSession();
+            if (session) {
+                document.getElementById('userName').innerText = session.nombre;
+                document.getElementById('userRole').innerText = session.role;
+                renderProveedores();
+            }
+        });
+    </script>
+</body>
+</html>
