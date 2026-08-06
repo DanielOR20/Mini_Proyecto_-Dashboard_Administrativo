@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clientes — TechSolutions CR</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Menú Lateral -->
+        <aside class="sidebar">
+            <h2>TechSolutions CR</h2>
+            <nav>
+                <ul>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="clientes.html" class="active">Clientes</a></li>
+                    <li><a href="productos.html">Productos</a></li>
+                    <li><a href="proveedores.html">Proveedores</a></li>
+                </ul>
+            </nav>
+            <button onclick="logout()" class="btn-logout">Cerrar Sesión</button>
+        </aside>
+
+        <!-- Área Principal -->
+        <main class="main-content">
+            <header class="header">
+                <h1>Administración de Clientes</h1>
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <div class="user-info">
+                        <span id="userName">Cargando...</span> | <span id="userRole"></span>
+                    </div>
+                    <button onclick="toggleTheme()" id="themeBtn" class="theme-switch-btn" style="margin: 0; padding: 8px 14px;">
+                        🌙 Modo Oscuro
+                    </button>
+                </div>
+            </header>
+
+            <div class="crud-container">
+                <!-- Formulario -->
+                <div class="form-card">
+                    <h3 id="formTitle">Agregar Cliente</h3>
+                    <form id="clienteForm">
+                        <input type="hidden" id="clienteId">
+                        
+                        <div class="form-group">
+                            <label>Nombre Completo:</label>
+                            <input type="text" id="nombreCliente" required placeholder="Ej: Carlos Rojas">
+                        </div>
+                        <div class="form-group">
+                            <label>Correo Electrónico:</label>
+                            <input type="email" id="correoCliente" required placeholder="carlos@empresa.com">
+                        </div>
+                        <div class="form-group">
+                            <label>Teléfono:</label>
+                            <input type="text" id="telefonoCliente" required placeholder="8888-8888">
+                        </div>
+                        <div class="form-group">
+                            <label>Empresa / Organización:</label>
+                            <input type="text" id="empresaCliente" required placeholder="Ej: TechCorp">
+                        </div>
+
+                        <button type="submit" class="btn-primary" id="btnGuardar">Guardar Cliente</button>
+                        <button type="button" class="btn-logout" id="btnCancelar" style="display:none; margin-top:8px;" onclick="resetClienteForm()">Cancelar Edición</button>
+                    </form>
+                </div>
+
+                <!-- Tabla de Datos -->
+                <div class="table-card">
+                    <h3>Lista de Clientes Registrados</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Correo</th>
+                                <th>Teléfono</th>
+                                <th>Empresa</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablaClientes">
+                            <!-- Se renderiza dinámicamente -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="javascript.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const session = checkSession();
+            if (session) {
+                document.getElementById('userName').innerText = session.nombre;
+                document.getElementById('userRole').innerText = session.role;
+                renderClientes();
+            }
+        });
+    </script>
+</body>
+</html>
