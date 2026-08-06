@@ -1,3 +1,35 @@
+:root {
+    /* Tema Oscuro Cyber Executive */
+    --bg-main: #0b0f19;
+    --bg-card: #151c2c;
+    --bg-sidebar: #070a12;
+    --accent: #00d2ff;
+    --accent-gradient: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%);
+    --text: #f1f5f9;
+    --text-muted: #94a3b8;
+    --border: rgba(255, 255, 255, 0.08);
+    --border-glow: rgba(0, 210, 255, 0.3);
+    --danger: #ff4757;
+    --danger-gradient: linear-gradient(135deg, #ff6b81 0%, #ff4757 100%);
+    --warning: #ffa502;
+    --shadow-card: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    --input-bg: rgba(11, 15, 25, 0.7);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text);
+    min-height: 100vh;
+}
+
 /* LAYOUT PRINCIPAL Y SIDEBAR */
 .app-container {
     display: flex;
@@ -15,12 +47,9 @@
 
 .sidebar h2 {
     background: var(--accent-gradient);
-    background-clip: text;
     -webkit-background-clip: text;
-
-    color: transparent;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
-
     font-size: 1.4rem;
     font-weight: 800;
     margin-bottom: 30px;
@@ -87,6 +116,22 @@
     border: 1px solid var(--border);
 }
 
+/* BOTÓN DE INTERRUPTOR DE TEMA */
+.theme-switch-btn {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.2s ease;
+}
+
+.theme-switch-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* TARJETAS Y MÉTRICAS */
 .metrics-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
