@@ -1,0 +1,57 @@
+/* ESTILOS PARA FORMULARIOS Y TABLAS CRUD (CLIENTES) */
+.crud-container {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 30px;
+}
+
+.form-card, .table-card {
+    background: var(--bg-card);
+    padding: 25px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-card);
+}
+
+.form-card h3, .table-card h3 {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+}
+
+th {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+}
+
+.btn-action {
+    padding: 7px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 700;
+    margin-right: 6px;
+}
+
+.btn-edit { 
+    background: rgba(255, 165, 2, 0.2); 
+    color: var(--warning); 
+}
+
+.btn-delete { 
+    background: rgba(255, 71, 87, 0.2); 
+    color: var(--danger); 
+}

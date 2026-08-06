@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos — TechSolutions CR</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Menú Lateral -->
+        <aside class="sidebar"> 
+            <h2>TechSolutions CR</h2>
+            <nav>
+                <ul>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="clientes.html">Clientes</a></li>
+                    <li><a href="productos.html" class="active">Productos</a></li>
+                    <li><a href="proveedores.html">Proveedores</a></li>
+                </ul>
+            </nav>
+            <button onclick="logout()" class="btn-logout">Cerrar Sesión</button>
+        </aside>
+
+        <!-- Área Principal -->
+        <main class="main-content">
+            <header class="header">
+                <h1>Administración de Productos</h1>
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <div class="user-info">
+                        <span id="userName">Cargando...</span> | <span id="userRole"></span>
+                    </div>
+                    <button onclick="toggleTheme()" id="themeBtn" class="theme-switch-btn" style="margin: 0; padding: 8px 14px;">
+                        🌙 Modo Oscuro
+                    </button>
+                </div>
+            </header>
+
+            <div class="crud-container">
+                <!-- Formulario -->
+                <div class="form-card">
+                    <h3 id="formTitleProd">Agregar Producto</h3>
+                    <form id="productoForm">
+                        <input type="hidden" id="productoId">
+                        
+                        <div class="form-group">
+                            <label>Nombre del Producto:</label>
+                            <input type="text" id="nombreProducto" required placeholder="Ej: Laptop Dell XPS">
+                        </div>
+                        <div class="form-group">
+                            <label>Categoría:</label>
+                            <input type="text" id="categoriaProducto" required placeholder="Ej: Hardware / Laptops">
+                        </div>
+                        <div class="form-group">
+                            <label>Precio ($ USD):</label>
+                            <input type="number" step="0.01" id="precioProducto" required placeholder="999.99">
+                        </div>
+                        <div class="form-group">
+                            <label>Stock Disponible:</label>
+                            <input type="number" id="stockProducto" required placeholder="10">
+                        </div>
+
+                        <button type="submit" class="btn-primary" id="btnGuardarProd">Guardar Producto</button>
+                        <button type="button" class="btn-logout" id="btnCancelarProd" style="display:none; margin-top:8px;" onclick="resetProductoForm()">Cancelar Edición</button>
+                    </form>
+                </div>
+
+                <!-- Tabla de Datos -->
+                <div class="table-card">
+                    <h3>Inventario de Productos</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Producto</th>
+                                <th>Categoría</th>
+                                <th>Precio</th>
+                                <th>Stock</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablaProductos">
+                            <!-- Se renderiza dinámicamente -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="javascript.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const session = checkSession();
+            if (session) {
+                document.getElementById('userName').innerText = session.nombre;
+                document.getElementById('userRole').innerText = session.role;
+                renderProductos();
+            }
+        });
+    </script>
+</body>
+</html>
