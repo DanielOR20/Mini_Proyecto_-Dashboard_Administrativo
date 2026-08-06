@@ -22,6 +22,8 @@ document.getElementById("loginForm")?.addEventListener("submit", function (e) {
     const pass = document.getElementById("password").value.trim();
     const errorElement = document.getElementById("loginError");
 
+
+    console.log("Email:", email);
     const user = defaultUsers.find(
         u => u.email === email && u.pass === pass
     );
