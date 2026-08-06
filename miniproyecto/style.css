@@ -50,8 +50,13 @@ body {
 .login-card h2 {
     margin-bottom: 25px;
     background: var(--accent-gradient);
+
+    background-clip: text;
     -webkit-background-clip: text;
+
+    color: transparent;
     -webkit-text-fill-color: transparent;
+
     text-align: center;
     font-size: 1.8rem;
     font-weight: 800;
