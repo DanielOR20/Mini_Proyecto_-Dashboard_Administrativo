@@ -1,0 +1,33 @@
+/* BOTÓN DE INTERRUPTOR Y TEMA CLARO */
+.theme-switch-btn {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text);
+    border: 1px solid var(--border);
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.theme-switch-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* TEMA CLARO */
+body.light-theme {
+    --bg-main: #f1f5f9;
+    --bg-card: #ffffff;
+    --bg-sidebar: #0f172a;
+    --accent: #0284c7;
+    --accent-gradient: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
+    --text: #0f172a;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --border-glow: rgba(2, 132, 199, 0.3);
+    --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.08);
+    --input-bg: #f8fafc;
+}
